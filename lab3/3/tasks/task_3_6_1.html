@@ -1,0 +1,27 @@
+<html id="n_1">
+
+<head id="n_2">
+    <meta charset="UTF-8">
+    <title name="n_3">Задание 3.6.1</title>
+</head>
+
+<body id="n_4" style="background-color: beige;">
+    <h2 id="n_5">Пример для работы с коллекциями элементов</h2>
+    <p id="n_6">Это 6-ой элемент коллекции (порядковый номер - 5)</p>
+    <p id="n_7">Это 7-ой элемент коллекции (порядковый номер - 6)</p>
+    <script id="n_8" language="JavaScript">
+        const tags = document.getElementsByTagName('*');
+        for (let i = 0; i < tags.length; i++) {
+            alert("1-й способ. " + "Тэг с индексом " + i + ": " +
+                tags.item(i).tagName);
+            alert("2-й способ. " + "Тэг с индексом " + i + ": " +
+                tags[i].tagName);
+        }
+        alert("Встретилось элементов в документе:" +
+            tags.length); // выдаст 8
+        alert("6-й элемент: " +
+            tags.item("n_6").tagName);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+﻿005#OnePlus 7 Pro#30000 ₽#OnePlus.txt
+004#Lenovo Legion#$990#Legion.txt
+003#Steam Deck#$600#Deck.txt
+002#iPhone 15 Pro Max#$1299#Apple.txt
+001#MacBook Pro#500000₽#Mac.txt

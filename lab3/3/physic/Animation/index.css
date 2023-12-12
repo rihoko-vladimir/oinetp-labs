@@ -1,0 +1,178 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --my-start-rotate: 0deg;
+    --my-end-rotate: -360deg;
+    --speed: 10s;
+    --speed2: 5s;
+}
+
+body {
+    background-color: #083f76;
+    min-height: 100vh;
+}
+
+.system {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(75deg);
+    animation: anim_planet var(--speed) linear infinite;
+}
+
+.sun,
+#orbit,
+#planet,
+#orbit_moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    border-radius: 50%;
+}
+
+.sun,
+#planet {
+    width: 2em;
+    height: 2em;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+
+.sun {
+    font-size: 7em;
+    background: url("./sun.png");
+    box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+    transform: rotateX(-90deg);
+}
+
+#planet {
+    left: 100%;
+    transform: rotateX(60deg);
+}
+
+.planet-animation1 {
+    animation: animPlanet1 var(--speed) linear infinite;
+}
+
+.planet-animation2 {
+    animation: animPlanet2 var(--speed) linear infinite;
+}
+
+#orbit {
+    width: 24em;
+    height: 24em;
+    margin-top: -12em;
+    margin-left: -12em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+#orbit_moon {
+    width: 6em;
+    height: 6em;
+    margin-top: -3em;
+    margin-left: -3em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.orbit_animation1 {
+    animation: animOrbit1 var(--speed) linear infinite;
+}
+
+.orbit_animation2 {
+    animation: animOrbit2 var(--speed) linear infinite;
+}
+
+.orbit_animation_moon {
+    background: green;
+    animation: animOrbit1 var(--speed2) linear infinite;
+}
+
+.animation_moon {
+    animation: animOrbit2 var(--speed2) linear infinite;
+}
+
+@keyframes anim_planet {
+    0% {
+        left: 30%;
+        top: 30%;
+    }
+    50% {
+        left: -20%;
+        top: -20%;
+    }
+    100% {
+        left: 30%;
+        top: 30%;
+    }
+}
+
+@keyframes animOrbit1 {
+    0% {
+        transform: rotateZ(var(--my-start-rotate));
+    }
+    100% {
+        transform: rotateZ(var(--my-end-rotate));
+    }
+}
+
+@keyframes animOrbit1 {
+    0% {
+        transform: rotateZ(var(--my-start-rotate));
+    }
+    100% {
+        transform: rotateZ(var(--my-end-rotate));
+    }
+}
+
+@keyframes animOrbit2 {
+    0% {
+        transform: rotateZ(var(--my-end-rotate));
+    }
+    100% {
+        transform: rotateZ(var(--my-start-rotate));
+    }
+}
+
+@keyframes animPlanet1 {
+    0% {
+        transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+    }
+}
+
+@keyframes animPlanet2 {
+    0% {
+        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
+    }
+}
+
+#moon {
+    position: absolute;
+    background: linear-gradient(to bottom, #f8da2f 0%, rgb(255, 153, 0) 100%);
+    box-shadow: 0 0 60px rgba(255, 209, 60, 0.4);
+    left: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* animation: animMoon var(--speed) linear infinite; */
+}
+
+@keyframes animMoon {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(-360deg) rotateY(360deg) rotateZ(0deg);
+    }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //3.2.2
+    window.addEventListener("beforeunload", (event) => {
+        //если браузер chrome, то добавить 
+        event.returnValue = "Пока!"; //true; //false;
+    });
+</script>
+
+<body>
+    <h1 style="text-align: center;">Пароль верный!</h1>
+</body>
+
+</html>

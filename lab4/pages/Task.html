@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задание</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        let filesGlobal = []; // Change to an array to store multiple files
+        let dataFilesGlobal = [];
+
+        function showFile(input, key) {
+            let files = input.files;
+
+            // Clear the table before inserting rows for each file
+            document.getElementById("goodsTable").innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Имя</th>
+                        <th>Цена</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>`;
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let reader = new FileReader();
+
+                reader.readAsText(file);
+                reader.onload = function () {
+                    let rows = reader.result.split("\n");
+                    let mapRows = rows.map((sRow) => sRow.split('#'));
+
+                    dataFilesGlobal.push(mapRows);
+
+                    let oTable = document.getElementById("goodsTable");
+
+                    mapRows.forEach(aData => {
+                        let oTableRow = oTable.insertRow(1);
+                        let oNumberCell = oTableRow.insertCell(0);
+                        let oNameCell = oTableRow.insertCell(1);
+                        let oPriceCell = oTableRow.insertCell(2);
+                        let oLinkCell = oTableRow.insertCell(3);
+
+                        let oLink = document.createElement("a");
+                        var oLinkText = document.createTextNode("подробнее...");
+                        oLink.appendChild(oLinkText);
+                        oLink.setAttribute("href", "../txtFiles/" + aData[3]);
+                        oLink.setAttribute("target", "_blank");
+
+                        oNumberCell.innerHTML = aData[0];
+                        oNameCell.innerHTML = aData[1];
+                        oPriceCell.innerHTML = aData[2];
+                        oLinkCell.appendChild(oLink);
+                    });
+                };
+            }
+        }
+
+        const maxCost = () => {
+            // Implement max cost logic using dataFilesGlobal
+        }
+
+        const minCost = () => {
+            // Implement min cost logic using dataFilesGlobal
+        }
+
+        const AverageCost = () => {
+            // Implement average cost logic using dataFilesGlobal
+        }
+    </script>
+</head>
+<body style="background-color: #ffffff; width: 100%; margin: 0 auto;">
+<ul style="text-align: center;">
+    <li style="display: inline; margin-right: 20px;"><a href="task4_5_1.html">Task 4_5_1</a></li>
+    <li style="display: inline; margin-right: 20px;"><a href="task4_5_2.html">Task 4_5_2-1</a></li>
+    <li style="display: inline; margin-right: 20px;"><a href="task4_5_2-2.html">Task 4_5_2-2</a></li>
+    <li style="display: inline; margin-right: 20px;"><a href="task4_5_3.html">Task 4_5_3</a></li>
+    <li style="display: inline; margin-right: 20px;"><a href="task4_5_4.html">Task 4_5_4</a></li>
+    <li style="display: inline; margin-right: 20px;"><a href="Task.html">Task</a></li>
+</ul>
+<main style="margin-top: 50px; flex-direction: column; display: flex; flex-direction: column; align-self: center; align-items: center; justify-content: center;">
+    <input type="file" multiple="multiple" id="inputFile" onchange="showFile(this)"/>
+    <table id="goodsTable" style="margin-top: 100px;">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя</th>
+            <th>Цена</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+    </table>
+    <!--    <button onclick="maxCost()">Max</button>-->
+    <!--    <button onclick="AverageCost()">Average</button>-->
+    <!--    <button onclick="minCost()">Min</button>-->
+</main>
+</body>
+</html>

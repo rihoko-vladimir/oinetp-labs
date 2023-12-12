@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Простая страница: перевод температуры в градусах по Цельсию в градусы по Фаренгейту</title>
+    <script language="JavaScript">
+        function inputCels() {
+            const cels = prompt("Введите значение температуры в градусах по цельсию", "Введите температуру");
+            if (+cels < -273 || isNaN(cels)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansFah = doFahCalc(cels);
+            alert(cels + " градусов по Цельсию равно " + ansFah + " градусов по Фаренгейту");
+        }
+        function inputFah() {
+            const fah = prompt("Введите значение температуры в градусах по Фаренгейту", "Введите температуру");
+            if (+fah < -460 || isNaN(fah)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansCel = doCelCalc(fah);
+            alert(fah + " градусов по Фаренгейту равно " + ansCel + " градусов по Цельсию");
+        }
+        function inputCre() {
+            const fah = prompt("Введите значение температуры в градусах Цельсия", "Введите температуру");
+            if (+fah < -273 || isNaN(fah)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansCel = Number(fah) * 0.8;
+            alert(fah + " Реомюр равно " + ansCel + " градусов по Цельсию");
+        }
+        function inputFaRe() {
+            const fah = prompt("Введите значение температуры в градусах по Фаренгейту", "Введите температуру");
+            if (+fah < -460 || isNaN(fah)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansCel = Number(fah) / 2.25;
+            alert(fah + " градусов по Реомюру равно " + ansCel + " градусов по Фаренгейту");
+        }
+        function inputReC() {
+            const fah = prompt("Введите значение температуры в градусах по Реомюру", "Введите температуру");
+            if (+fah < -218.5 || isNaN(fah)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansCel = Number(fah) * 1.25;
+            alert(fah + " градусов по Цельсию равно " + ansCel + " градусов по Реомюру");
+        }
+        function inputReFa() {
+            const fah = prompt("Введите значение температуры в градусах по Реомюру", "Введите температуру");
+            if (+fah < -218.5 || isNaN(fah)) {
+                alert('Неверная температура')
+                return;
+            }
+            ansCel = Number(fah) * 0.44;
+            alert(fah + " градусов по Реомюру равно " + ansCel + " градусов по Фаренгейту");
+        }
+        function doCelCalc(fah) {
+            const ans = ((Number(fah) - 32) / 1.8);
+            return (ans);
+        }
+        function doFahCalc(cels) {
+            const ans = ((1.8 * Number(cels)) + 32);
+            return (ans);
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Переход от градусов по Цельсию к градусам по Фаренгейту" ondblclick="inputCels();">
+    <br><br>
+    <input type="button" value="Переход от градусов по Фаренгейту к градусам по Цельсию" ondblclick="inputFah();">
+    <br><br>
+    <input type="button" value="Переход от Цельсий к Реомюр" ondblclick="inputCre();">
+    <br><br>
+    <input type="button" value="Переход от Фаренгейт к Реомюр" ondblclick="inputFaRe();">
+    <br><br>
+    <input type="button" value="Переход от Реомюр к Цельсий" ondblclick="inputReC();">
+    <br><br>
+    <input type="button" value="Переход от Реомюр к Фаренгейту" ondblclick="inputReFa();">
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Обработка данных формы с различными элементами управления: список, кнопка, текст.)
+    </title>
+    <script language="JavaScript">
+        addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+
+            alert("You are leaving the page!");
+        })
+        // 3.4.1
+        function testsel() {
+            var d = document;
+            var a = d.forms["form1"].num.value;
+            if (+a <= 0 || isNaN(a)) {
+                alert("Неверное значение стороны");
+                return;
+            }
+            var s;
+            var r = "  ";
+            // alert(d.forms["form1"].elements[1])[0]
+            if (d.forms["form1"].elements[2][0].selected) {
+                a = a * 100
+            }
+            if (d.forms["form1"].elements[2][1].selected) {
+                a = a * 10
+            }
+            if (d.forms["form1"].elements[2][3].selected) {
+                a = a * 39.37
+            }
+            if (((d.forms["form1"].elements[0])[0]).selected) {
+                r = r + ((d.forms["form1"].elements[0])[0]).text;
+                s = a * a * 3.14;
+            }
+            if (((d.forms["form1"].elements[0])[1]).selected) {
+                r = r + ((d.forms["form1"].elements[0])[1]).text;
+                s = a * a;
+            }
+            if (((d.forms["form1"].elements[0])[2]).selected) {
+                r = r + ((d.forms["form1"].elements[0])[2]).text;
+                s = a * a / 2;
+            }
+            if (((d.forms["form1"].elements[0])[3]).selected) {
+                r = r + ((d.forms["form1"].elements[0])[3]).text;
+                s = a * a * (Math.cbrt(3) / 4);
+            }
+            //
+            d.forms["form1"]["res"].value = s;
+            d.forms["form1"]["fig"].value = r;
+        }
+    </script>
+</head>
+
+<body bgcolor=#f8f8ff>
+    <center>
+        <h3>Вычисление площадей некоторых фигур</h3>
+        <table border=5>
+            <FORM name="form1">
+                <tr>
+                    <td>Выберите фигуру:
+                        <select name="list1" size=1>
+                            <option value=0>круг
+                            <option value=1>квадрат
+                            <option value=2>треугольник (прямоугольный, равнобедренный)
+                            <option value=3>треугольник (равносторонний)
+                        </select>&nbsp;&nbsp;&nbsp;
+                        Введите параметр в метрах (радиус, сторону, высоту):
+
+                        <input type="text" size=5 name="num"><br>
+                        Выберите единицу измерения
+                        <select name="list2" size=1>
+                            <option value=0>миллиметрах
+                            <option value=1>сантиметрах
+                            <option value=2>метрах
+                            <option value=3>дюймах
+                        </select>&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="Вычислить" onClick="testsel()"><br><br><br>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Фигура: <input type="text" name="fig" size=65>&nbsp;&nbsp;&nbsp;
+                        Площадь: <input type="text" name="res" size=14><br>
+                        <input type="reset" value="Обновить">
+                    </td>
+                </tr>
+            </FORM>
+        </table>
+</body>
+
+</html>

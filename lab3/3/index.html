@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Лабораторная Работа №3</h1>
+    <div>
+        <button onclick="event.preventDefault(); zero()">3.1.1</button>
+        <button onclick="event.preventDefault(); first()">3.1.2</button>
+        <button onclick="event.preventDefault(); second()">3.1.3</button>
+        <button onclick="event.preventDefault(); thrid()">3.1.4</button>
+        <button onclick="event.preventDefault(); fouth()">3.1.5</button>
+        <button onclick="event.preventDefault(); five()">3.1.6</button>
+        <button onclick="event.preventDefault(); six()">3.1.7</button>
+        <button onclick="event.preventDefault(); seven()">3.1.8</button>
+        <button onclick="event.preventDefault(); eight()">3.1.9</button>
+        <button onclick="event.preventDefault(); document.location.href = 'ten.html'">3.1.10 - 3.2.2</button>
+        <button onclick="event.preventDefault(); document.location.href = 'temperature.html'">3.2.3</button>
+        <button onclick="event.preventDefault(); document.location.href = './math/first.html'">3.3.1 - 3.3.3</button>
+        <button onclick="event.preventDefault(); document.location.href = './math/circul.html'">3.4.1</button>
+        <button onclick="event.preventDefault(); document.location.href = './math/minmax.html'">3.4.2</button>
+        <button onclick="event.preventDefault(); document.location.href = './physic/Animation/index.html'">3.5</button>
+        <button onclick="event.preventDefault(); document.location.href = './tasks/task_3_6_1.html'">3.6.1</button>
+        <button onclick="event.preventDefault(); document.location.href = './tasks/task_4_6_3.html'">4.6.3</button>
+        <button onclick="event.preventDefault(); document.location.href = './tasks/task_4_6_4.html'">4.6.4</button>
+
+    </div>
+    <script type="text/javascript">
+        function zero() {
+            var response = confirm("Вы выбираете JavaScript? - Нажмите OK. А если нет - Cancel."); // а как еще здесь можно применить оператор var
+            if (response == true) {
+                for (i = 0; i < 3; i++) {
+                    alert("Отличный выбор!");
+                }
+            }
+            else {
+                for (i = 0; i < 3; i++) {
+                    alert("Может подумаете? Просмотрите конспект на сайте КМТИ.");
+                }
+            }
+        }
+        // first()
+        function first() {
+            // 3.1.2 
+            for (let i = 1; i < 6; i++) {
+                alert(i);
+            }
+        }
+
+        // second()
+        function second() {
+            // 3.1.3 
+            let step = 0;
+            let message;
+            do {
+                if (step > 2) {
+                    alert("У вас кончились попытки");
+                    break;
+                }
+                message = prompt("Сколько у квадрата углов?", "Впечатайте любой текст");
+                step++;
+            } while (
+                message != "4"
+            );
+            alert("Правильный ответ - 4");
+        }
+
+        // thrid()
+        function thrid() {
+            // 3.1.4 
+            let i = 1;
+            while (i < 6) {
+                alert(i);
+                i++;
+            }
+        }
+
+        // fouth()
+        function fouth() {
+            // 3.1.5
+            let arr = [];
+            for (let i = 9; i >= 0; i--) {
+                arr.push(i);
+            }
+            let str = arr.join(" ");
+            alert(str);
+        }
+
+        // five()
+        function five() {
+            // 3.1.6
+            let myArray = new Array();
+            for (let i = 1; i < 4; i++) {
+                myArray.push(
+                    '\n<a src="../image1/' + i + '.jpg"' + ">image " + i + "</a>"
+                );
+            }
+            alert("Ссылки на мои картинки: " + myArray);
+        }
+
+        // six()
+        function six() {
+            // 3.1.7
+            let x = 0;
+            while (x < 10) {
+                x++;
+                if (x % 2 === 1) {
+                    continue;
+                }
+                alert(x);
+            }
+
+        }
+
+        // seven()
+        function seven() {
+            // 3.1.8
+            let breakAt = prompt("Введите число для прерывания цикла от 1 до 10-ти ", "");
+            for (let num = 1; num <= 10; num++) {
+                if (num == breakAt) {
+                    break;
+                }
+                alert(num);
+            }
+        }
+
+        // eight()
+        function eight() {
+            // 3.1.9
+            const key = prompt("Введите любую букву: a, b, c, d или e");
+
+            const letters = ['a', 'b', 'c', 'd', 'e'];
+            let guesses = []
+            let k = 0;
+
+            if (letters.includes(key)) {
+                while (letters.length) {
+                    let index = Math.floor(Math.random() * letters.length);
+                    k++;
+
+                    alert(letters[index]);
+
+                    if (letters[index] == key) {
+                        alert(`Буква ${key} угадана за ${k} шагов, предыдущие буквы: ${guesses.join(', ')}`);
+                        return;
+                    } else {
+                        guesses.push(letters[index]);
+                        letters.splice(index);
+                    }
+                }
+            } else {
+                alert("Был введен другой символ");
+            }
+        }
+    </script>
+</body>
+
+</html>

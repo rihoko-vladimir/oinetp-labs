@@ -1,0 +1,24 @@
+.list-of-questions{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.list-of-questions>ol>li{
+    font-size: 30px;
+    font-style: italic;
+}
+
+.list-of-questions>ol>li>ol>li{
+    font-size: 24px;
+    font-style: italic;
+}
+
+
+.list-of-questions>ol>li>ol>li>ol>li{
+    font-size: 18px;
+    font-style: italic;
+}
+
+

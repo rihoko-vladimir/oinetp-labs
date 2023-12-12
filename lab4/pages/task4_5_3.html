@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Визуальные эффекты перехода revealtrans()</title>
+    <style>
+        .input-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .input-label {
+            margin-right: 10px;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        // function infinity() {
+        //     while(true)
+        //     {
+        //         light_logo();
+        //     }
+        // }
+
+        function light_logo() {
+            var minValue = parseInt(document.getElementById("min").value);
+                var maxValue = parseInt(document.getElementById("max").value);
+                var counter = 0;
+            // while(counter <=20)
+            // {
+                var randomAnimationValue = getRandomNumber(minValue, maxValue);
+                var randomSpeedValue = getRandomNumber(minValue, maxValue);
+
+                // ImageLogo.style.visibility = "visible";
+                // ImageLogo.filters.revealtrans.Apply();
+                // ImageLogo.filters.revealtrans.transition = randomAnimationValue;
+                // ImageLogo.filters.revealtrans.duration = randomSpeedValue;
+                // ImageLogo.filters.revealtrans.play();
+                ImageLogo.filters.revealtrans.Apply();
+                ImageLogo.filters.revealtrans.transition = randomAnimationValue;
+                ImageLogo.filters.revealtrans.duration = randomAnimationValue;
+                ImageLogo.style.visibility = "visible";
+                ImageLogo.filters.revealtrans.play();
+                setTimeout(function () {
+                    ImageLogo.style.visibility = "hidden";
+                    light_logo(); // Рекурсивный вызов функции для следующей анимации
+                }, (randomAnimationValue * 1000) + 1000);
+            //     counter++;
+            // }
+        }
+        // function light_logo() {
+        //     var minValue = parseInt(document.getElementById("min").value);
+        //     var maxValue = parseInt(document.getElementById("max").value);
+        //     // while(true)
+        //     // {
+        //         // var digit = Math.random() * ((max + 1) - min) + min;
+        //         // var seed = Date.now();
+  
+        //         // var random = (seed * 9301 + 49297) % 233280 / 233280;
+
+        //         // var digit = parseInt(Math.floor(min + random * (max - min)));
+        //         var min = parseInt(document.getElementById("minValue").value);
+        //         var max = parseInt(document.getElementById("maxValue").value);
+        //         var min = digit;
+        //         var max = digit;
+        //         var ii = Number(min);
+        //         var duration = Number(max);
+        //         ImageLogo.filters.revealtrans.Apply();
+        //         ImageLogo.filters.revealtrans.transition = ii;
+        //         ImageLogo.filters.revealtrans.duration = duration;
+        //         ImageLogo.style.visibility = "visible";
+        //         ImageLogo.filters.revealtrans.play();
+        //         // setTimeout(function() {
+        //         // }, 1000 * (digit + 1));
+        //     // }                   
+        // }
+    </script>
+</head>
+
+<body>
+    <header style="background-color: rgb(255,255,255); width: 100%; height: 50px;">
+        <nav>
+            <ul style="text-align: center;">
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_1.html">Task 4_5_1</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_2.html">Task 4_5_2-1</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_2-2.html">Task 4_5_2-2</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_3.html">Task 4_5_3</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_4.html">Task 4_5_4</a></li>   
+                <li style="display: inline; margin-right: 20px;"><a href="Task.html">Task</a></li>             
+            </ul>
+        </nav>
+    </header>
+    <h3>Эффекты перехода revealtrans()</h3>
+    <img id="ImageLogo" src="../images/123.jpg"
+        style="filter:revealtrans(); LEFT:500px; TOP:38px ; POSITION:absolute; width: 500px; "><br><br><br>
+        <div class="input-row">
+            <label class="input-label">От:</label>
+            <input type="number" id="min" max="23">
+            <label class="input-label">До:</label>
+            <input type="number" id="max" max="23">
+        </div>    
+    <!-- <div class="input-row">
+        <label class="input-label"> Значение типа:</label>
+        <input type="number" id="minValue" max="23">
+    </div>
+    <div class="input-row">
+        <label class="input-label"> Значение скорости:</label>
+        <input type="number" id="maxValue" size="3">
+    </div> -->
+    <div class="input-row">
+        <input type="button" value="Применить" onClick="ImageLogo.style.visibility='hidden'; light_logo();">
+    </div>
+</body>
+
+</html>

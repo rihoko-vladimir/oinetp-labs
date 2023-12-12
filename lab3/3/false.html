@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1>Пароль неверный!</h1>
+        <a href="./index.html" onmouseout="message()">Перейти на страницу заданий -></a>
+    </div>
+    <script>
+        // 3.2.1 
+        let alertOn = true
+        alert("Неправильный пароль, перейдите обратно на страницу с заданиями.");
+        function message() {
+            if (alertOn) {
+                alert("Переход обратно на страницу");
+                alertOn = false
+            }
+        }
+    </script>
+</body>
+</html>

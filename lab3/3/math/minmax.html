@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <section class="form-task_3_4_2">
+            <h2>Вычисление минимального и максимального дохода</h2>
+            <p>Введите начисленные Вам суммы за месяцы:
+            <form name="form3">
+                <div class="inputs">
+                    январь: <input type="text" size=8 name="m1"> февраль: <input type="text" size=8 name="m2"> март:
+                    <input type="text" size=8 name="m3"> апрель: <input type="text" size=8 name="m4"> май: <input
+                        type="text" size=8 name="m5"> июнь:
+                    <input type="text" size=8 name="m6"><br><br> июль: <input type="text" size=8 name="m7"> август:
+                    <input type="text" size=8 name="m8"> сентябрь: <input type="text" size=8 name="m9"> октябрь: <input
+                        type="text" size=8 name="m10"> ноябрь:
+                    <input type="text" size=8 name="m11"> декабрь: <input type="text" size=8 name="m12">
+                </div>
+                <br><br> минимальная зарплата за 12 месяцев:
+                <input type="text" size=50 name="min-result"><br><br> максимальная зарплата за 12 месяцев:
+                <input type="text" size=50 name="max-result"><br><br>
+                <input type="button" value="Вычислить" class="calculateMinAndMaxIncomeButton">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="Обновить">
+            </form>
+        </section>
+    </div>
+    <hr />
+
+    <script>
+
+        function getAllIndexes(arr, val) {
+            const indexes = [];
+            let i = -1;
+
+            while ((i = arr.indexOf(val, i + 1)) != -1) {
+                indexes.push(i);
+            }
+            return indexes;
+        }
+
+        function minAndMaxIncome(formElements) {
+            const monthsNames = [
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь",
+            ];
+            const monthsIncomes = [];
+
+            for (let i = 1; i <= 12; i++) {
+                if (isNaN(+formElements[`m${i}`].value) || +formElements[`m${i}`].value < 0) {
+                    alert('error');
+                    return;
+                }
+                monthsIncomes.push(+formElements[`m${i}`].value);
+            }
+
+            const minIncome = Math.min(...monthsIncomes);
+            const maxIncome = Math.max(...monthsIncomes);
+
+            const minIncomeMonths = getAllIndexes(monthsIncomes, minIncome).map(
+                (index) => monthsNames[index]
+            );
+
+            const maxIncomeMonths = getAllIndexes(monthsIncomes, maxIncome).map(
+                (index) => monthsNames[index]
+            );
+
+            formElements["min-result"].value = `${minIncome} (${minIncomeMonths.join(
+                ", "
+            )})`;
+            formElements["max-result"].value = `${maxIncome} (${maxIncomeMonths.join(
+                ", "
+            )})`;
+        }
+
+        function setup() {
+            const [calculateMinAndMaxIncomeButton] = document.getElementsByClassName(
+                "calculateMinAndMaxIncomeButton"
+            );
+            calculateMinAndMaxIncomeButton.onclick = () => {
+                const form = document.forms.form3;
+                minAndMaxIncome(form.elements);
+            };
+        }
+        window.onload = function () {
+            setup();
+        };
+    </script>
+</body>
+
+</html>

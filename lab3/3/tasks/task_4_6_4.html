@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Периодически сменяющиеся объявления-изображения</title>
+    <link rel="stylesheet" href="./styles.css" type="text/css">
+    <!-- можно добавлять объявления в этот список.
+           для этого придуман нераспознаваемый элемент.  -->
+    <adlist src="./assets/img_1.jpg" duration=3000></adlist>
+    <adlist src="./assets/img_2.jpg" duration=2000></adlist>
+     <adlist src="./assets/img_3.jpg" duration=3000></adlist>
+    <adlist src="./assets/img_4.jpg"></adlist>
+    <adlist src="./assets/img_5.jpg" duration=3000></adlist>
+    <adlist src="./assets/img_6.jpg"></adlist>
+    <adlist src="./assets/img_7.jpg" duration=3000></adlist>
+    <adlist src="./assets/img_8.jpg"></adlist>
+    <adlist src="./assets/img_9.jpg" duration=3000></adlist>
+    <adlist src="./assets/img_10.jpg"></adlist>
+    <adlist src="./assets/img_11.jpg" duration=4000></adlist>
+
+    <script language="javascript">
+        let adset = document.getElementsByTagName("adlist");
+        adset.current = 0;
+        let nextimage = document.createElement("img");
+        ////////////////////////////////////////////////////////////
+        function preload() {
+            // получение следующего изображения.
+            // если ошибка, то переход к следующему изображению
+            /* всегда переустанавливаются обработчики событий изображений перед назначением атрибута src для гарантии невозможности пропуска события*/
+            nextimage.onerror = preload;
+            nextimage.src =
+            adset[adset.current].getAttribute("src");
+            // атрибут duration определяет длительность 
+            // показа изображения.
+            nextimage.duration =
+            adset[adset.current].getAttribute("duration");
+            if (null == nextimage.duration)  //если не определено, то
+            nextimage.duration = 2000;    // по умолчанию 2 секунды.
+            if (++adset.current == adset.length)
+            adset.current = 0;            //стартуем снова.
+        }
+        ////////////////////////////////////////////////////////////
+        function skipimage() {
+            // проверяется, загружено ли следующее изображение.
+            if (nextimage.complete) {
+                document.all.ad.src = nextimage.src;
+                let duration = nextimage.duration;
+                preload();
+                window.tm = setTimeout('skipimage()', duration);
+            }
+            else //быстрый повтор, пока следующее изображ. не загружено.
+            window.tm = setTimeout('skipimage()', 10);
+        }
+        preload();
+    </script>
+</head>
+
+<body onload="window.tm = setTimeout('skipimage()', 1);" onunload="cleartimeout(window.tm);">
+    <h2>Периодически сменяющиеся изображения</h2>
+    <img width="1280" height="720" id="ad" src="./assets/img_4.jpg">
+</body>
+
+</html>

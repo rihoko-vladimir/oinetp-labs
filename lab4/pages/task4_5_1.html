@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Работа с фреймами</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: #c2bc76;
+        }
+
+        #frameset {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #frame {
+            height: 83.2vh;
+            width: 100%;
+            border: none;
+        }
+
+        #frame-blocks {
+            display: flex;
+            flex-direction: column;
+            background-color: lightgray;
+        }
+
+        .frame-block {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+
+        .selected {
+            background-color: #ffffff;
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="margin: 0 auto;">
+    <header style="background-color: rgb(255,255,255); width: 100%; height: 50px;">
+        <nav>
+            <ul style="text-align: center;">
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_1.html">Task 4_5_1</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_2.html">Task 4_5_2-1</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_2-2.html">Task 4_5_2-2</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_3.html">Task 4_5_3</a></li>
+                <li style="display: inline; margin-right: 20px;"><a href="task4_5_4.html">Task 4_5_4</a></li>   
+                <li style="display: inline; margin-right: 20px;"><a href="Task.html">Task</a></li>             
+            </ul>
+        </nav>
+    </header>
+    <div id="frameset">
+        <iframe id="frame" src="frame1.html" scrolling="auto"></iframe>
+        <div id="frame-blocks">
+            <div class="frame-block selected" onclick="openFrame(0)">Введение в DHTML</div>
+            <div class="frame-block" onclick="openFrame(1)">Возможности DHTML</div>
+            <div class="frame-block" onclick="openFrame(2)">Применение AJAX и JSON.</div>
+            <div class="frame-block" onclick="openFrame(3)">Библиотека jQuery</div>
+            <div class="frame-block" onclick="openFrame(4)">Возможности JavaScript и DHTML в компьютерной графике</div>
+        </div>
+    </div>
+    <script>
+        var frameBlocks = document.querySelectorAll(".frame-block");
+        var frame = document.getElementById("frame");
+        var selectedFrameIndex = 0;
+        var previousFrameIndex = null;
+
+        function openFrame(index) {
+            frameBlocks[selectedFrameIndex].style.display = "flex";
+            frameBlocks[selectedFrameIndex].classList.remove("selected");
+            frameBlocks[index].style.display = "none";
+            frameBlocks[index].classList.add("selected");
+            frame.src = "frame" + (index + 1) + ".html";
+            previousFrameIndex = selectedFrameIndex;
+            selectedFrameIndex = index;
+        } 
+    </script>
+</body>
+</html>

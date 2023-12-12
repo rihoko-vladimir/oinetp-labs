@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h2>3.3.1-3.3.2</h2>
+    <button onclick="event.preventDefault(); first()">3.3.1</button>
+    <button onclick="event.preventDefault(); second()">3.3.2</button>
+    <hr />
+    <h2>3.3.3</h2>
+    <div class="content">
+        <section class="form-task_3_3_3">
+            <h2>Вычисление среднемесячного дохода</h2>
+            <p>Введите начисленные Вам суммы за месяцы:
+            <form name="form1">
+                январь: <input type="text" size=8 name="m1"> февраль: <input type="text" size=8 name="m2"> март:
+                <input type="text" size=8 name="m3"> апрель: <input type="text" size=8 name="m4"> май: <input
+                    type="text" size=8 name="m5"> июнь:
+                <input type="text" size=8 name="m6">
+                <br><br> Средняя зарплата за шесть месяцев:
+                <input type="text" size=22 name="result"><br><br>
+                <input type="button" value="Вычислить" class="calculateIncomeButton">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="Обновить">
+            </form>
+        </section>
+        <hr />
+        <section class="form-task_3_4_2">
+            <h2>Вычисление минимального и максимального дохода</h2>
+            <p>Введите начисленные Вам суммы за месяцы:
+            <form name="form3">
+                <div class="inputs">
+                    январь: <input type="text" size=8 name="m1"> февраль: <input type="text" size=8 name="m2"> март:
+                    <input type="text" size=8 name="m3"> апрель: <input type="text" size=8 name="m4"> май: <input
+                        type="text" size=8 name="m5"> июнь:
+                    <input type="text" size=8 name="m6"><br><br> июль: <input type="text" size=8 name="m7"> август:
+                    <input type="text" size=8 name="m8"> сентябрь: <input type="text" size=8 name="m9"> октябрь: <input
+                        type="text" size=8 name="m10"> ноябрь:
+                    <input type="text" size=8 name="m11"> декабрь: <input type="text" size=8 name="m12">
+                </div>
+                <br><br> минимальная зарплата за 12 месяцев:
+                <input type="text" size=50 name="min-result"><br><br> максимальная зарплата за 12 месяцев:
+                <input type="text" size=50 name="max-result"><br><br>
+                <input type="button" value="Вычислить" class="calculateMinAndMaxIncomeButton">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="Обновить">
+            </form>
+        </section>
+    </div>
+    <hr />
+
+    <script>
+        // 3.3.1 
+        function first() {
+            let radius = Math.round(Math.random() * 100);
+            alert(
+                "Площадь круга с радиусом " +
+                radius +
+                "м равна " +
+                Math.PI * Math.pow(radius, 2) + "м²");
+        }
+
+
+        // 3.3.2
+        function second() {
+            let now = new Date();
+            let options = {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            };
+
+            alert(
+                "Сегодня " +
+                now.toLocaleString("ru", options) +
+                " Через неделю будет " +
+                addDays(now, 7).toLocaleString("ru", options));
+
+            function addDays(date, days) {
+                var result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
+            }
+        }
+
+
+        // 3.3.3
+
+        function income(ob_frm) {
+            const inc_m1 = ob_frm.m1.value;
+            const inc_m2 = ob_frm.m2.value;
+            const inc_m3 = ob_frm.m3.value;
+            const inc_m4 = ob_frm.m4.value;
+            const inc_m5 = ob_frm.m5.value;
+            const inc_m6 = ob_frm.m6.value;
+            if (isNaN(inc_m1 + inc_m2 + inc_m3 + inc_m4 + inc_m5 + inc_m6)) {
+                alert('error');
+                return;
+            }
+            ob_frm.result.value = (inc_m1 + inc_m2 + inc_m3 + inc_m4 + inc_m5 + inc_m6) / 6;
+        }
+
+        function testsel() {
+            const d = document;
+            const a = d.forms.form2.num.value;
+            if (isNaN(a) || a <= 0) {
+                alert('error');
+                return;
+            }
+            let s;
+            let r = "  ";
+            if (d.forms.form2.elements.list1[0].selected) {
+                r += d.forms.form2.elements[0][0].text;
+                s = a * a * 3.14;
+            }
+            if (d.forms.form2.elements.list1[1].selected) {
+                r += d.forms.form2.elements[0][1].text;
+                s = a * a;
+            }
+            if (d.forms.form2.elements.list1[2].selected) {
+                r += d.forms.form2.elements[0][2].text;
+                s = (a * a) / 2;
+            }
+
+            if (d.forms.form2.elements.list1[3].selected) {
+                r += d.forms.form2.elements[0][3].text;
+                s = ((a * a) / 4) * Math.sqrt(3);
+            }
+
+            if (d.forms.form2.elements.list1[4].selected) {
+                r += d.forms.form2.elements[0][4].text;
+                s = (a * Math.sqrt(3)) / 2;
+            }
+
+            d.forms.form2.res.value = `${s} ${d.forms.form2.elements.list2.value}`;
+            d.forms.form2.fig.value = r;
+        }
+
+        function getAllIndexes(arr, val) {
+            const indexes = [];
+            let i = -1;
+
+            while ((i = arr.indexOf(val, i + 1)) !== -1) {
+                indexes.push(i);
+            }
+            return indexes;
+        }
+
+        function minAndMaxIncome(formElements) {
+            const monthsNames = [
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь",
+            ];
+            const monthsIncomes = [];
+
+            for (let i = 1; i <= 12; i++) {
+                if (isNaN(+formElements[`m${i}`].value) || +formElements[`m${i}`].value < 0) {
+                    alert('error');
+                    return;
+                }
+                monthsIncomes.push(+formElements[`m${i}`].value);
+            }
+
+            const minIncome = Math.min(...monthsIncomes);
+            const maxIncome = Math.max(...monthsIncomes);
+
+            const minIncomeMonths = getAllIndexes(monthsIncomes, minIncome).map(
+                (index) => monthsNames[index]
+            );
+
+            const maxIncomeMonths = getAllIndexes(monthsIncomes, maxIncome).map(
+                (index) => monthsNames[index]
+            );
+
+            formElements["min-result"].value = `${minIncome} (${minIncomeMonths.join(
+                ", "
+            )})`;
+            formElements["max-result"].value = `${maxIncome} (${maxIncomeMonths.join(
+                ", "
+            )})`;
+        }
+
+        function setup() {
+            const [calculateIncomeButton] = document.getElementsByClassName(
+                "calculateIncomeButton"
+            );
+            calculateIncomeButton.onclick = () => {
+                const form = document.forms.form1;
+                income(form.elements);
+            };
+
+            const [calculateMinAndMaxIncomeButton] = document.getElementsByClassName(
+                "calculateMinAndMaxIncomeButton"
+            );
+            calculateMinAndMaxIncomeButton.onclick = () => {
+                const form = document.forms.form3;
+                minAndMaxIncome(form.elements);
+            };
+        }
+        window.onload = function () {
+            setup();
+        };
+    </script>
+</body>
+
+</html>
